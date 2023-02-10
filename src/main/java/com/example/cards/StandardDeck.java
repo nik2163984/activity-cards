@@ -34,27 +34,33 @@ public class StandardDeck implements Deck{
 
     @Override
     public void cut(int index) {
+        List<Card> top = this.cards.subList(0, index);
+        List<Card> bottom = this.cards.subList(index, this.cards.size());
 
+        this.cards.clear();
+
+        this.cards.addAll(bottom);
+        this.cards.addAll(top);
     }
 
     @Override
     public Card deal() {
-        return null;
+        return this.cards.remove(0);
     }
 
     @Override
     public Card turnOver() {
-        return null;
+        return this.cards.get(0);
     }
 
     @Override
     public int search(Card card) {
-        return 0;
+        return this.cards.indexOf(card);
     }
 
     @Override
     public void newOrder(Deck cards) {
-
+        Collections.sort(this.cards);
     }
 
     @Override
